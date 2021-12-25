@@ -3,12 +3,22 @@
     --secondary: rgb(70, 70, 70);
 }
 
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-#time{
+.seconds {
+    margin: 0 5px;
+}
+
+#the-time{
     font-size: 30px;
   }
 

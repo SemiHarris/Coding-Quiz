@@ -1,12 +1,15 @@
 var timerEl = document.querySelector('#btsb');
+var theTimeEl = document.querySelector("#the-time")
+
 
 var timer = function () {
   event.preventDefault();
   var counter = 60;
   var interval = setInterval(function() {
-    console.log(--counter)
+    theTimeEl.innerHTML = --counter;
     if (counter <= 0) {
       clearInterval(interval)
+    }else {
     }
   }, 1000);
 };
