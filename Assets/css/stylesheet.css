@@ -30,7 +30,7 @@ body {
 .quiz-form {
     height: 400px;
     width: 400px;
-    margin: 200px auto;
+    margin: 200px auto 0px auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -53,4 +53,44 @@ h1 {
     border: solid 2px var(--secondary);
     border-radius: 10px;
     margin: auto 5px;
+}
+
+.btc1 {
+    font-size: 25px;
+    background-color: var(--primary);
+    border: solid 2px var(--secondary);
+    border-radius: 10px;
+    margin: auto 5px;
+}
+
+.btc2 {
+    font-size: 25px;
+    background-color: var(--primary);
+    border: solid 2px var(--secondary);
+    border-radius: 10px;
+    margin: auto 5px;
+}
+
+.btc3 {
+    font-size: 25px;
+    background-color: var(--primary);
+    border: solid 2px var(--secondary);
+    border-radius: 10px;
+    margin: auto 5px;
+}
+
+.btc4 {
+    font-size: 25px;
+    background-color: var(--primary);
+    border: solid 2px var(--secondary);
+    border-radius: 10px;
+    margin: auto 5px;
+}
+
+.result {
+    border-top: solid 1px black;
+    width: 400px;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 30px;
 }
