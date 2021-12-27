@@ -1,17 +1,19 @@
-var startEl = document.querySelector('#btsb');
+var startEl = document.querySelector('.btc');
 var theTimeEl = document.querySelector("#the-time")
 var quizFormEl = document.querySelector('.quiz-form')
 var bodyEl = document.querySelector('body')
 var score = 0
 var counter = 60;
+var highScore = [];
 
 /*The timer for the quiz*/
-var timer = function () {
+var timer = function (myStopFunction) {
   event.preventDefault();
   var interval = setInterval(function() {
     theTimeEl.innerHTML = --counter;
     if (counter == 0) {
       clearInterval(interval)
+      theTimeEl.innerHTML = "";
     }else {
     }
   }, 1000);
@@ -34,6 +36,7 @@ var penalty = function() {
   setTimeout(function (){
     wrongEl.remove()
   }, 1000);
+  
 }
 
 /*The result of getting a correctanwser*/
@@ -51,6 +54,37 @@ var reward = function() {
   }, 1000);
 };
 
+var end = function() {
+  counter = 1;
+  quizFormEl.innerHTML = "";
+
+  var done = document.createElement('h1');
+  done.textContent = 'All Done!';
+  quizFormEl.appendChild(done);
+
+  var highscore = document.createElement('p');
+  highscore.textContent = ('Your score is ' + score)
+
+  var scoreSave = document.createElement('div')
+  scoreSave.className = 'scoreForm';
+
+  var initials = document.createElement('input')
+  initials.placeholder = 'Initials';
+  initials.className = 'saveScore';
+
+  var submitScore = document.createElement('button')
+  submitScore.className = ('submit');
+  submitScore.id = ('bts')
+  submitScore.textContent = ('Submit')
+
+  quizFormEl.appendChild(highscore)
+  quizFormEl.appendChild(scoreSave)
+  scoreSave.appendChild(initials)
+  scoreSave.appendChild(submitScore)
+
+  /*var newScore = document.querySelector("input[name='saveScore']").value;*/
+}
+
 /*Question 5*/
 var question5 = function() {
   quizFormEl.innerHTML = "";
@@ -62,21 +96,25 @@ var question5 = function() {
   var answer1 = document.createElement('button');
   answer1.textContent = '1. Div';
   answer1.className = ('btc1');
+  answer1.id = ('btc')
   quizFormEl.appendChild(answer1);
 
   var answer2 = document.createElement('button');
   answer2.textContent = '2. Function';
   answer2.className = ('btc2');
+  answer2.id = ('btc')
   quizFormEl.appendChild(answer2);
 
   var answer3 = document.createElement('button');
   answer3.textContent = '3. Boolean';
   answer3.className = ('btc3');
+  answer3.id = ('btc')
   quizFormEl.appendChild(answer3);
 
   var answer4 = document.createElement('button');
   answer4.textContent = '4. Variable';
   answer4.className = ('btc4');
+  answer4.id = ('btc')
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
@@ -103,21 +141,25 @@ var question4 = function() {
   var answer1 = document.createElement('button');
   answer1.textContent = '1. display: flex;';
   answer1.className = ('btc1');
+  answer1.id = ('btc')
   quizFormEl.appendChild(answer1);
 
   var answer2 = document.createElement('button');
   answer2.textContent = '2. display: flexbox;';
   answer2.className = ('btc2');
+  answer2.id = ('btc')
   quizFormEl.appendChild(answer2);
 
   var answer3 = document.createElement('button');
   answer3.textContent = '3. display: box;';
   answer3.className = ('btc3');
+  answer3.id = ('btc')
   quizFormEl.appendChild(answer3);
 
   var answer4 = document.createElement('button');
   answer4.textContent = '4. display: inline;';
   answer4.className = ('btc4');
+  answer4.id = ('btc')
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', reward)
@@ -144,21 +186,25 @@ var question3 = function() {
   var answer1 = document.createElement('button');
   answer1.textContent = '1. localStorage.getItem("lunch", "sandwich");';
   answer1.className = ('btc1');
+  answer1.id = ('btc')
   quizFormEl.appendChild(answer1);
 
   var answer2 = document.createElement('button');
   answer2.textContent = '2. localStorage.setItem("lunch", "sandwich");';
   answer2.className = ('btc2');
+  answer2.id = ('btc')
   quizFormEl.appendChild(answer2);
 
   var answer3 = document.createElement('button');
   answer3.textContent = '3. getItem.localStorage.("lunch", "sandwich");';
   answer3.className = ('btc3');
+  answer3.id = ('btc')
   quizFormEl.appendChild(answer3);
 
   var answer4 = document.createElement('button');
   answer4.textContent = '4. setItem.localStorage("lunch", "sandwich");';
   answer4.className = ('btc4');
+  answer4.id = ('btc')
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
@@ -180,27 +226,31 @@ var question2 = function() {
   quizFormEl.innerHTML = "";
 
   var question = document.createElement('h1');
-  question.textContent = 'A special variable which can hold more than one value is called a:';
+  question.textContent = 'A special variable which can hold more than one value is called:';
   quizFormEl.appendChild(question);
 
   var answer1 = document.createElement('button');
   answer1.textContent = '1. List';
   answer1.className = ('btc1');
+  answer1.id = ('btc')
   quizFormEl.appendChild(answer1);
 
   var answer2 = document.createElement('button');
   answer2.textContent = '2. Function';
   answer2.className = ('btc2');
+  answer2.id = ('btc')
   quizFormEl.appendChild(answer2);
 
   var answer3 = document.createElement('button');
   answer3.textContent = '3. Boolean';
   answer3.className = ('btc3');
+  answer3.id = ('btc')
   quizFormEl.appendChild(answer3);
 
   var answer4 = document.createElement('button');
   answer4.textContent = '4. Array';
   answer4.className = ('btc4');
+  answer4.id = ('btc')
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
@@ -219,6 +269,7 @@ var question2 = function() {
 /*Question 1*/
 var question1 = function() {
   quizFormEl.innerHTML = "";
+  score = 0;
 
   var question = document.createElement('h1');
   question.textContent = 'Which of these values is NOT considered false?';
@@ -227,21 +278,25 @@ var question1 = function() {
   var answer1 = document.createElement('button');
   answer1.textContent = '1. 0';
   answer1.className = ('btc1');
+  answer1.id = ('btc')
   quizFormEl.appendChild(answer1);
 
   var answer2 = document.createElement('button');
   answer2.textContent = '2. "0"';
   answer2.className = ('btc2');
+  answer2.id = ('btc');
   quizFormEl.appendChild(answer2);
 
   var answer3 = document.createElement('button');
   answer3.textContent = '3. null';
   answer3.className = ('btc3');
+  answer3.id = ('btc')
   quizFormEl.appendChild(answer3);
 
   var answer4 = document.createElement('button');
   answer4.textContent = '4. ""';
   answer4.className = ('btc4');
+  answer4.id = ('btc')
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
@@ -255,6 +310,30 @@ var question1 = function() {
 
   answer4.addEventListener('click', penalty)
   answer4.addEventListener('click', question2)
+}
+
+/*This takes you back to the initial screen.*/
+var homeScreen = function () {
+
+  quizFormEl.innerHTML = "";
+
+  var header = document.createElement('h1')
+  header.textContent = 'Coding Quiz Challenge'
+
+  var paragraph = document.createElement('p');
+  paragraph.textContent = "It had become a far too common an event in her life. She has specifically placed the key to the box in a special place so that she wouldn't lose it and know exactly where it was when the key was needed. Now that she needed to open the box, she had absolutely no idea where that special spot she placed the key might be."
+
+  var button = document.createElement('button');
+  button.className = ('btc');
+  button.id = ('btc');
+  button.textContent = 'Start';
+
+  button.addEventListener('click', question1)
+  button.addEventListener('click', timer)
+
+  quizFormEl.appendChild(header);
+  quizFormEl.appendChild(paragraph);
+  quizFormEl.appendChild(button);
 }
 
 startEl.addEventListener('click', question1)

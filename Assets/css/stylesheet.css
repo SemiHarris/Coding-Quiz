@@ -33,7 +33,6 @@ body {
     margin: 200px auto 0px auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 h1 {
@@ -41,57 +40,29 @@ h1 {
     font-size: 36px;
     width: 100%;
     text-align: center;
+    margin-bottom: 0;
 }
 
 .buttons {
     display: flex;
-    margin: 5px auto;
+    margin: 0px;
 }
 
-.btc {
+#btc {
     display: flex;
-    margin: 5px auto;
+    margin: 10px auto 0px auto;
     font-size: 25px;
     background-color: var(--primary);
     border: solid 2px var(--secondary);
     border-radius: 10px;
 }
 
-.btc1 {
-    display: flex;
+#bts {
+    margin: 1px;
     font-size: 25px;
     background-color: var(--primary);
     border: solid 2px var(--secondary);
     border-radius: 10px;
-    margin: 5px auto;
-    
-}
-
-.btc2 {
-    display: flex;
-    font-size: 25px;
-    background-color: var(--primary);
-    border: solid 2px var(--secondary);
-    border-radius: 10px;
-    margin: 5px auto;
-}
-
-.btc3 {
-    display: flex;
-    font-size: 25px;
-    background-color: var(--primary);
-    border: solid 2px var(--secondary);
-    border-radius: 10px;
-    margin: 5px auto;
-}
-
-.btc4 {
-    display: flex;
-    font-size: 25px;
-    background-color: var(--primary);
-    border: solid 2px var(--secondary);
-    border-radius: 10px;
-    margin: 5px auto;
 }
 
 .result {
@@ -100,4 +71,14 @@ h1 {
     margin: 0px auto;
     text-align: center;
     font-size: 30px;
+}
+
+.saveScore {
+   font-size: 24px;
+   border: solid black 2px;
+   border-radius: 10px;
+}
+
+.scoreForm {
+    margin: 0 auto;
 }
