@@ -293,7 +293,7 @@ var homeScreen = function () {
   header.textContent = 'Coding Quiz Challenge'
 
   var paragraph = document.createElement('p');
-  paragraph.textContent = "It had become a far too common an event in her life. She has specifically placed the key to the box in a special place so that she wouldn't lose it and know exactly where it was when the key was needed. Now that she needed to open the box, she had absolutely no idea where that special spot she placed the key might be."
+  paragraph.textContent = "This is a coding quiz with a timer of 60 seconds and 5 questions. If a question is answered incorrecly then there will be a deduction of 15 points from your score and you will lose 15 seconds from the timer. When a question is answered correctly you will get an addition of 10 points to your score."
 
   var button = document.createElement('button');
   button.className = ('btc');

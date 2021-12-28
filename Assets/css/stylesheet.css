@@ -4,6 +4,7 @@
 }
 
 body {
+    height: 100%;
     width: 100%;
     overflow-x: hidden;
 }
@@ -15,6 +16,7 @@ header {
     align-items: center;
 }
 
+/*Styling for the timer*/
 .seconds {
     margin: 0;
 }
@@ -25,11 +27,7 @@ header {
     margin: 5px
   }
 
-body {
-    width: 100%;
-    height: 100%;
-}
-
+/*Styling for the Quiz*/
 .quiz-form {
     height: 400px;
     width: 50%;
@@ -44,6 +42,11 @@ h1 {
     width: 100%;
     text-align: center;
     margin-bottom: 0;
+}
+
+.quiz-form {
+    width: 30%;
+    text-align: center;
 }
 
 .buttons {
