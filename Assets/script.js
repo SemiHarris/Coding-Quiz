@@ -271,7 +271,7 @@ var question1 = function() {
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
-  answer1.addEventListener('click', loadScores)
+  answer1.addEventListener('click', question2)
 
   answer2.addEventListener('click', reward)
   answer2.addEventListener('click', question2)
