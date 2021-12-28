@@ -16,6 +16,7 @@ var timer = function (myStopFunction) {
     if (counter == 0) {
       clearInterval(interval)
       theTimeEl.innerHTML = "";
+      end()
     }else {
     }
   }, 1000);
