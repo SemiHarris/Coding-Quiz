@@ -4,7 +4,9 @@ var quizFormEl = document.querySelector('.quiz-form')
 var bodyEl = document.querySelector('body')
 var score = 0
 var counter = 60;
-var highScore = [];
+var highScoreSave = [];
+
+console.log(localStorage)
 
 /*The timer for the quiz*/
 var timer = function (myStopFunction) {
@@ -54,9 +56,17 @@ var reward = function() {
   }, 1000);
 };
 
+
 var end = function() {
   counter = 1;
   quizFormEl.innerHTML = "";
+
+  highScoreSave = localStorage.getItem("highScoreSave");
+  highScoreSave = JSON.parse(highScoreSave);
+
+  if (!highScoreSave) {
+    highScoreSave = [];
+  }
 
   var done = document.createElement('h1');
   done.textContent = 'All Done!';
@@ -71,6 +81,7 @@ var end = function() {
   var initials = document.createElement('input')
   initials.placeholder = 'Initials';
   initials.className = 'saveScore';
+  initials.type= 'text';
 
   var submitScore = document.createElement('button')
   submitScore.className = ('submit');
@@ -82,7 +93,7 @@ var end = function() {
   scoreSave.appendChild(initials)
   scoreSave.appendChild(submitScore)
 
-  /*var newScore = document.querySelector("input[name='saveScore']").value;*/
+  submitScore.addEventListener('click', save)
 }
 
 /*Question 5*/
@@ -300,7 +311,7 @@ var question1 = function() {
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
-  answer1.addEventListener('click', question2)
+  answer1.addEventListener('click', loadScores)
 
   answer2.addEventListener('click', reward)
   answer2.addEventListener('click', question2)
@@ -334,6 +345,62 @@ var homeScreen = function () {
   quizFormEl.appendChild(header);
   quizFormEl.appendChild(paragraph);
   quizFormEl.appendChild(button);
+}
+
+/*Saves the initial and score*/
+var save = function() {
+  var newScore = document.querySelector("input").value;
+
+  var youScore = document.createAttribute('p')
+  youScore.textContent =  (newScore + '-' + '('+ score +')');
+
+  highScoreSave.push(youScore.value);
+
+  localStorage.setItem("highScoreSave", JSON.stringify(highScoreSave));
+
+  loadScores()
+ 
+}
+
+var loadScores = function() {
+
+  quizFormEl.innerHTML = "";
+
+  var header = document.createElement('h1')
+  header.textContent = 'HighScores';
+
+  quizFormEl.appendChild(header);
+
+  highScoreSave = localStorage.getItem("highScoreSave");
+  highScoreSave = JSON.parse(highScoreSave);
+
+  if (!highScoreSave) {
+    highScoreSave = [];
+  }
+
+  for (var i = 0; i < highScoreSave.length; i++) {
+    score = document.createElement('p');
+    score.textContent = (highScoreSave[i]);
+    score.className = 'thescores';
+    quizFormEl.appendChild(score);
+  }
+
+  var div = document.createElement('div');
+  div.className = ('loadDiv');
+
+  var goBack = document.createElement('button');
+  goBack.textContent = 'Go Back';
+  goBack.className = ('load')
+
+  var clear = document.createElement('button');
+  clear.textContent = 'Clear';
+  clear.className = ('load')
+
+  quizFormEl.appendChild(div)
+  div.appendChild(goBack);
+  div.appendChild(clear);
+
+  goBack.addEventListener('click', homeScreen)
 }
 
 startEl.addEventListener('click', question1)
