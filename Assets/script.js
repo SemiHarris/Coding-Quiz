@@ -56,46 +56,6 @@ var reward = function() {
   }, 1000);
 };
 
-
-var end = function() {
-  counter = 1;
-  quizFormEl.innerHTML = "";
-
-  highScoreSave = localStorage.getItem("highScoreSave");
-  highScoreSave = JSON.parse(highScoreSave);
-
-  if (!highScoreSave) {
-    highScoreSave = [];
-  }
-
-  var done = document.createElement('h1');
-  done.textContent = 'All Done!';
-  quizFormEl.appendChild(done);
-
-  var highscore = document.createElement('p');
-  highscore.textContent = ('Your score is ' + score)
-
-  var scoreSave = document.createElement('div')
-  scoreSave.className = 'scoreForm';
-
-  var initials = document.createElement('input')
-  initials.placeholder = 'Initials';
-  initials.className = 'saveScore';
-  initials.type= 'text';
-
-  var submitScore = document.createElement('button')
-  submitScore.className = ('submit');
-  submitScore.id = ('bts')
-  submitScore.textContent = ('Submit')
-
-  quizFormEl.appendChild(highscore)
-  quizFormEl.appendChild(scoreSave)
-  scoreSave.appendChild(initials)
-  scoreSave.appendChild(submitScore)
-
-  submitScore.addEventListener('click', save)
-}
-
 /*Question 5*/
 var question5 = function() {
   quizFormEl.innerHTML = "";
@@ -129,16 +89,16 @@ var question5 = function() {
   quizFormEl.appendChild(answer4);
 
   answer1.addEventListener('click', penalty)
-  answer1.addEventListener('click', question6)
+  answer1.addEventListener('click', end)
 
   answer2.addEventListener('click', penalty)
-  answer2.addEventListener('click', question6)
+  answer2.addEventListener('click', end)
 
   answer3.addEventListener('click', reward)
-  answer3.addEventListener('click', question6)
+  answer3.addEventListener('click', end)
 
   answer4.addEventListener('click', penalty)
-  answer4.addEventListener('click', question6)
+  answer4.addEventListener('click', end)
 }
 
 /*Question 4*/
@@ -347,12 +307,53 @@ var homeScreen = function () {
   quizFormEl.appendChild(button);
 }
 
+/*A end screen that saves their score locally*/
+var end = function() {
+  counter = 1;
+  quizFormEl.innerHTML = "";
+
+  highScoreSave = localStorage.getItem("highScoreSave");
+  highScoreSave = JSON.parse(highScoreSave);
+
+  if (!highScoreSave) {
+    highScoreSave = [];
+  }
+
+  var done = document.createElement('h1');
+  done.textContent = 'All Done!';
+  quizFormEl.appendChild(done);
+
+  var highscore = document.createElement('p');
+  highscore.textContent = ('Your score is ' + score)
+
+  var scoreSave = document.createElement('div')
+  scoreSave.className = 'scoreForm';
+
+  var initials = document.createElement('input')
+  initials.placeholder = 'Initials';
+  initials.className = 'saveScore';
+  initials.type= 'text';
+
+  var submitScore = document.createElement('button')
+  submitScore.className = ('submit');
+  submitScore.id = ('bts')
+  submitScore.textContent = ('Submit')
+
+  quizFormEl.appendChild(highscore)
+  quizFormEl.appendChild(scoreSave)
+  scoreSave.appendChild(initials)
+  scoreSave.appendChild(submitScore)
+
+  submitScore.addEventListener('click', save)
+}
+
+
 /*Saves the initial and score*/
 var save = function() {
   var newScore = document.querySelector("input").value;
 
   var youScore = document.createAttribute('p')
-  youScore.textContent =  (newScore + '-' + '('+ score +')');
+  youScore.textContent =  (newScore + ':' + '('+ score +')');
 
   highScoreSave.push(youScore.value);
 
@@ -362,6 +363,7 @@ var save = function() {
  
 }
 
+/*Diplays the highscores*/
 var loadScores = function() {
 
   quizFormEl.innerHTML = "";
@@ -401,6 +403,13 @@ var loadScores = function() {
   div.appendChild(clear);
 
   goBack.addEventListener('click', homeScreen)
+  clear.addEventListener('click', remove)
+}
+
+var remove = function() {
+  localStorage.removeItem("highScoreSave");
+  
+  loadScores()
 }
 
 startEl.addEventListener('click', question1)
